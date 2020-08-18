@@ -48,15 +48,15 @@
                     <li class="nav-item {{ (request()->is('orders/create*')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('orders.create') }}">New Order</a>
                     </li>
-                    @if (auth()->user()->hasRole('admin'))
-                        <li class="nav-item dropdown {{ (request()->is('users*')) ? 'active' : '' }}">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User manager</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item {{ (request()->is('users')) ? 'active' : '' }}" href="{{ route('users.index') }}">User manager</a>
-                                <a class="dropdown-item {{ (request()->is('users/create')) ? 'active' : '' }}" href="{{ route('users.create') }}">Add User</a>
-                            </div>
-                        </li>
-                    @endif
+{{--                    @if (auth()->user()->hasRole('admin'))--}}
+{{--                        <li class="nav-item dropdown {{ (request()->is('users*')) ? 'active' : '' }}">--}}
+{{--                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User manager</a>--}}
+{{--                            <div class="dropdown-menu">--}}
+{{--                                <a class="dropdown-item {{ (request()->is('users')) ? 'active' : '' }}" href="{{ route('users.index') }}">User manager</a>--}}
+{{--                                <a class="dropdown-item {{ (request()->is('users/create')) ? 'active' : '' }}" href="{{ route('users.create') }}">Add User</a>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                    @endif--}}
 
                 </ul>
             @endauth

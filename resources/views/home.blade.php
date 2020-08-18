@@ -36,12 +36,15 @@
                 <th scope="col">Description</th>
                 <th scope="col">File</th>
                 <th scope="col">Created</th>
+                @if (auth()->user()->hasRole('admin'))
+                    <th scope="col">User</th>
+                @endif
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-{{--            <code>  {{$orders}}</code>--}}
+            <code>  {{$orders}}</code>
 {{--                            @dump(auth()->user()->hasRole('user'))--}}
             {{--                @dump(auth()->user()->hasRole('admin'))--}}
 
@@ -52,6 +55,9 @@
                         <td>{{ $order->description }}</td>
                         <td>{{ $order->file }}</td>
                         <td>{{ $order->created_at->diffForHumans() }}</td>
+                        @if (auth()->user()->hasRole('admin'))
+                            <td scope="col">{{ $order->id }}</td>
+                        @endif
                         <td><a href="{{ route('orders.edit', [$order->id]) }}">EDIT</a></td>
                         <td>
                             {{ Form::open(array('url' => 'orders/' . $order->id, 'class' => 'pull-right')) }}
