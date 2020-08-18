@@ -33,7 +33,7 @@
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-{{--        <a class="navbar-brand" href="#">{{$name}}</a>--}}
+        <a class="navbar-brand" href="#">{{$name}}</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,15 +45,15 @@
                     <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{route('home')}}">Home </a>
                     </li>
-{{--                    <li class="nav-item {{ (request()->is('orders/create*')) ? 'active' : '' }}">--}}
-{{--                        <a class="nav-link" href="{{ route('orders.create') }}">New Order</a>--}}
+                    <li class="nav-item {{ (request()->is('orders/create*')) ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('orders.create') }}">New Order</a>
                     </li>
                     @if (auth()->user()->hasRole('admin'))
                         <li class="nav-item dropdown {{ (request()->is('users*')) ? 'active' : '' }}">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User manager</a>
                             <div class="dropdown-menu">
-{{--                                <a class="dropdown-item {{ (request()->is('users')) ? 'active' : '' }}" href="{{ route('users.index') }}">User manager</a>--}}
-{{--                                <a class="dropdown-item {{ (request()->is('users/create')) ? 'active' : '' }}" href="{{ route('users.create') }}">Add User</a>--}}
+                                <a class="dropdown-item {{ (request()->is('users')) ? 'active' : '' }}" href="{{ route('users.index') }}">User manager</a>
+                                <a class="dropdown-item {{ (request()->is('users/create')) ? 'active' : '' }}" href="{{ route('users.create') }}">Add User</a>
                             </div>
                         </li>
                     @endif

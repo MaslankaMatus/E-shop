@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.master', function($view)
+        {
+            $view->with('name', 'Cassovia e-Shop');
+        });
     }
 }

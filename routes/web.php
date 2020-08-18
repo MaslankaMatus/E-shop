@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'OrdersController@index')->name('home');
+
+
+Route::resource('orders', 'OrdersController');
+Route::resource('users', 'UsersController', ['middleware' => 'auth:admin']);
