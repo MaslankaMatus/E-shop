@@ -49,7 +49,7 @@ class OrdersController extends Controller
             array_merge($request->all(), ['file' => $path, 'user_id' => auth()->id()])
         );
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Order added!');
     }
 
     /**
@@ -68,8 +68,45 @@ class OrdersController extends Controller
     public function create(){
         return view('newOrder', [
             'title' => 'Cassovia',
-            'name' => 'Cassovia e-Shop',
         ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Order $order)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+
+        ]);
+        auth()->user()->orders()->where('id', $order->id)->update(['name' => $request->name, 'description' => $request->description, 'file' => $request->file]);
+//        return redirect()->back();
+        return redirect('/')->with('success', 'Order updated!');
+//        return $request;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Order $order)
+    {
+        if (($order->user_id == auth()->id()) || (auth()->user()->isAdmin())){ //TODO
+            $val = Order::find($order->id);
+            $val->delete();
+            return redirect('/')->with('success', 'Order deleted!');
+        }else{
+            abort(403, "you can't");
+        }
+
     }
 
 }

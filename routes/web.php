@@ -19,4 +19,4 @@ Route::get('/', 'OrdersController@index')->name('home');
 
 
 Route::resource('orders', 'OrdersController');
-Route::resource('users', 'UsersController', ['middleware' => 'auth:admin']);
+//Route::resource('users', 'UsersController', ['middleware' => 'auth:admin']);

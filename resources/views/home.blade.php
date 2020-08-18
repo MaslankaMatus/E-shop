@@ -41,7 +41,7 @@
             </tr>
             </thead>
             <tbody>
-            <code>  {{$orders}}</code>
+{{--            <code>  {{$orders}}</code>--}}
 {{--                            @dump(auth()->user()->hasRole('user'))--}}
             {{--                @dump(auth()->user()->hasRole('admin'))--}}
 
@@ -63,7 +63,7 @@
                 @elseif (auth()->user()->hasRole('user'))
 
                     @can('view', $order)
-                        <code>  {{$order}}</code>
+{{--                        <code>  {{$order}}</code>--}}
 
                         <tr :order-data="{{ $order }}">
                             <td>{{ $order->name }}</td>
