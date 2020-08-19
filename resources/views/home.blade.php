@@ -56,7 +56,7 @@
                         <td>{{ $order->file }}</td>
                         <td>{{ $order->created_at->diffForHumans() }}</td>
                         @if (auth()->user()->hasRole('admin'))
-                            <td scope="col">{{ $order->id }}</td>
+                            <td scope="col">{{ $order->name }}</td>
                         @endif
                         <td><a href="{{ route('orders.edit', [$order->id]) }}">EDIT</a></td>
                         <td>
