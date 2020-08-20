@@ -41,7 +41,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view("users", [
+        return view("user.users", [
             'users' => User::all()
         ]);
     }
@@ -53,7 +53,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('newUser', [
+        return view('user.newUser', [
             'roles' => Role::all()
         ]);
     }
@@ -94,7 +94,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('editUser',[
+        return view('user.editUser',[
             'user' => User::findOrFail($id),
             'roles' => Role::all()
         ]);

@@ -60,13 +60,13 @@ class OrdersController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('editOrder',[
+        return view('order.editOrder',[
             'order' => $order,
         ]);
     }
 
     public function create(){
-        return view('newOrder', [
+        return view('order.newOrder', [
             'title' => 'Cassovia',
         ]);
     }

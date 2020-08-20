@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="content">
-        <h1>Edit User</h1>
+        <h1>Edit ORDER</h1>
 
     </div>
 </div>
@@ -12,7 +12,7 @@
 @auth
     <div class="container">
 
-        @include('editUserForm')
+        @include('order.edit')
     </div>
 @endauth
 

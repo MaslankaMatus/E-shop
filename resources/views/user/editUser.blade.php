@@ -4,14 +4,15 @@
 
 <div class="container">
     <div class="content">
-        <h1>NEW ORDER</h1>
+        <h1>Edit User</h1>
 
     </div>
 </div>
 
 @auth
     <div class="container">
-        @include('addOrder')
+
+        @include('user.editUserForm')
     </div>
 @endauth
 
