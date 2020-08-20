@@ -17,6 +17,7 @@ Auth::routes();
 
 Route::get('/', 'OrdersController@index')->name('home');
 Route::get('/home', 'OrdersController@index')->name('home');
+Route::get('/pdf', 'UsersController@pdf')->name('pdf');
 
 
 Route::resource('orders', 'OrdersController');

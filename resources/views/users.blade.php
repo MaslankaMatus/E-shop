@@ -10,7 +10,7 @@
                 </div>
             @endif
         </div>
-
+        <a class="btn btn-primary mb-2" href="{{ route('pdf') }}">Create PDF</a>
         <table class="table table-hover">
             <thead>
             <tr>
@@ -18,7 +18,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Role</th>
                 <th scope="col">Created</th>
-                <th scope="col"></th>
+                <th></th>
 {{--                <th scope="col"></th>--}}
             </tr>
             </thead>

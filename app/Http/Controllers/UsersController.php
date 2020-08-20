@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -122,5 +123,14 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pdf()
+    {
+        $users = User::all();
+        $pdf = PDF::loadView('pdf', [
+            'users' => $users
+        ]);
+        return $pdf->download('Users.pdf');
     }
 }
