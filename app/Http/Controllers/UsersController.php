@@ -15,7 +15,7 @@ class UsersController extends Controller
     public function __construct()
     {
 //        $this->middleware('auth:admin');
-        $this->middleware('auth:admin', ['except' => ['existUserName']]);
+        $this->middleware('auth:admin', ['except' => ['existUserName', 'existEmail']]);
     }
 
     /**
@@ -141,6 +141,15 @@ class UsersController extends Controller
     public function existUserName( $username )
     {
         $users = DB::table('users')->where('name', $username)->value('name');
+        if($users != NULL){
+            return ['is_used' => 1];
+        }
+        return ['is_used' => 0];
+    }
+
+    public function existEmail($email)
+    {
+        $users = DB::table('users')->where('email', $email)->value('email');
         if($users != NULL){
             return ['is_used' => 1];
         }

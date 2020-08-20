@@ -19,8 +19,8 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" onkeyup="check()" autofocus>
-                                    <small id="nameDesc" class="text-danger invisible">The name is already registred.</small>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" onkeyup="checkName()" autofocus>
+                                    <small id="nameDesc" class="text-danger invisible">This name is already registred.</small>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -33,8 +33,8 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" onkeyup="checkEmail()">
+                                    <small id="emailDesc" class="text-danger invisible">This email is already registred.</small>
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -93,7 +93,7 @@
     </div>
 
     <script>
-        function check(){
+        function checkName(){
             var name = $('input#name').val();
             if (name == '') return;
             $.getJSON('/username_in_use/' + name, function (response) {
@@ -103,6 +103,20 @@
                 } else{
                     $('#nameDesc').removeClass('invisible');
                     $('input#name').addClass('border-danger');
+                }
+            });
+        }
+
+        function checkEmail(){
+            var email = $('input#email').val();
+            if (email == '') return;
+            $.getJSON('/email_in_use/' + email, function (response) {
+                if (response.is_used == 0){
+                    $('input#email').removeClass('border-danger');
+                    $('#emailDesc').addClass('invisible');
+                } else{
+                    $('#emailDesc').removeClass('invisible');
+                    $('input#email').addClass('border-danger');
                 }
             });
         }

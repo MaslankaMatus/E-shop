@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-Route::any('/username_in_use/{username}', [
-    'uses' => 'UsersController@existUserName'
-]);
+Route::any('/username_in_use/{username}', ['uses' => 'UsersController@existUserName']);
+Route::any('/email_in_use/{email}', ['uses' => 'UsersController@existEmail']);
 
 Route::get('/', 'OrdersController@index')->name('home');
 Route::get('/home', 'OrdersController@index')->name('home');
