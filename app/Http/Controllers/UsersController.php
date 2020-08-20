@@ -14,7 +14,8 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+//        $this->middleware('auth:admin');
+        $this->middleware('auth:admin', ['except' => ['existUserName']]);
     }
 
     /**
@@ -49,7 +50,7 @@ class UsersController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
@@ -135,5 +136,14 @@ class UsersController extends Controller
             'users' => $users
         ]);
         return $pdf->download('Users.pdf');
+    }
+
+    public function existUserName( $username )
+    {
+        $users = DB::table('users')->where('name', $username)->value('name');
+        if($users != NULL){
+            return ['is_used' => 1];
+        }
+        return ['is_used' => 0];
     }
 }

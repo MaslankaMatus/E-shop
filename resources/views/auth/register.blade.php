@@ -19,8 +19,8 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" onkeyup="check()" autofocus>
+                                    <small id="nameDesc" class="text-danger invisible">The name is already registred.</small>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -91,4 +91,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function check(){
+            var name = $('input#name').val();
+            if (name == '') return;
+            $.getJSON('/username_in_use/' + name, function (response) {
+                if (response.is_used == 0){
+                    $('input#name').removeClass('border-danger');
+                    $('#nameDesc').addClass('invisible');
+                } else{
+                    $('#nameDesc').removeClass('invisible');
+                    $('input#name').addClass('border-danger');
+                }
+            });
+        }
+    </script>
 @endsection
