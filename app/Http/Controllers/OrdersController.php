@@ -20,7 +20,6 @@ class OrdersController extends Controller
     public function index()
     {
         return view("home", [
-            'title' => 'Cassovia',
             'orders' => Order::all()
         ]);
     }
@@ -29,7 +28,7 @@ class OrdersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -56,7 +55,7 @@ class OrdersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Order  $order
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function edit(Order $order)
     {
@@ -66,9 +65,7 @@ class OrdersController extends Controller
     }
 
     public function create(){
-        return view('order.newOrder', [
-            'title' => 'Cassovia',
-        ]);
+        return view('order.newOrder');
     }
 
     /**
@@ -76,7 +73,7 @@ class OrdersController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Order  $order
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Order $order)
     {
@@ -86,9 +83,7 @@ class OrdersController extends Controller
 
         ]);
         auth()->user()->orders()->where('id', $order->id)->update(['name' => $request->name, 'description' => $request->description, 'file' => $request->file]);
-//        return redirect()->back();
         return redirect('/')->with('success', 'Order updated!');
-//        return $request;
     }
 
     /**
@@ -104,7 +99,7 @@ class OrdersController extends Controller
             $val->delete();
             return redirect('/')->with('success', 'Order deleted!');
         }else{
-            abort(403, "you can't");
+            abort(403, "You are not authorized!");
         }
 
     }

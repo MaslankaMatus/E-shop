@@ -1,4 +1,4 @@
-@include('error')
+@include('errors.error')
 
 <form action="{{ route('users.update', [$user->id]) }}" method="POST">
     @csrf
@@ -6,9 +6,7 @@
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" name="name" class="form-control" id="name" value="{{ $user->name }}" disabled>
-{{--        <small id="name" class="form-text text-muted">We'll never share your email with anyone else.</small>--}}
     </div>
-{{--    @dump($order)--}}
 
     <div class="form-group">
         <label for="email">Description</label>

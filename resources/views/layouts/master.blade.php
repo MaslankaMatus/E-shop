@@ -33,7 +33,7 @@
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">{{$name}}</a>
+        <a class="navbar-brand" href="{{route('home')}}">{{$name}}</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -64,11 +64,11 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link {{ (request()->is('login')) ? 'active' : '' }}" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link {{ (request()->is('register')) ? 'active' : '' }}" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
@@ -94,12 +94,18 @@
         </div>
     </nav>
 
-
-
-
-
     <main class="py-4">
-        @yield('content')
+        <div class="row">
+            <div class="col-2"></div>
+
+            <div class="col-8">
+
+                    @yield('content')
+
+            </div>
+
+            <div class="col-2"></div>
+        </div>
     </main>
 </div>
 </body>

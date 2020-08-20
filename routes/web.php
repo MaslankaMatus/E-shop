@@ -18,7 +18,6 @@ Route::any('/username_in_use/{username}', ['uses' => 'UsersController@existUserN
 Route::any('/email_in_use/{email}', ['uses' => 'UsersController@existEmail']);
 
 Route::get('/', 'OrdersController@index')->name('home');
-Route::get('/home', 'OrdersController@index')->name('home');
 Route::get('/pdf', 'UsersController@pdf')->name('pdf');
 
 

@@ -1,4 +1,4 @@
-@include('error')
+@include('errors.error')
 <div class="col-2"></div>
 
 <div class="col-8">
@@ -14,20 +14,12 @@
             <input type="text" name="description" class="form-control" id="desciption">
         </div>
 
-        {{--        <div class="form-group">--}}
-        {{--            <label for="file">File Url</label>--}}
-        {{--            <input type="text" name="file" class="form-control" id="file">--}}
-        {{--        </div>--}}
-
         <div class="form-group">
             <label for="file">Upload file</label>
             <input type="file" name="files" class="" id="file">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
-
-        {{--    <input type="hidden" name="order_id" value="{{ $order->id }}">--}}
-        {{--    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">--}}
     </form>
 </div>
 

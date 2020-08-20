@@ -23,9 +23,6 @@
             </tr>
             </thead>
             <tbody>
-{{--                @dump(auth()->user()->hasRole('user'))--}}
-{{--                @dump(auth()->user()->hasRole('admin'))--}}
-
                 @foreach( $users as $user)
                     <tr :user-data="{{ $user }}">
                         <td>{{ $user->name }}</td>
