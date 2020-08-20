@@ -36,6 +36,7 @@ class OrdersController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'files' => 'mimes:pdf,jpg,png,doc,docx',
 
         ]);
         $path = NULL;
