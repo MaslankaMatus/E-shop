@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'OrdersController@index')->name('home');
+Route::get('/home', 'OrdersController@index')->name('home');
 
 
 Route::resource('orders', 'OrdersController');

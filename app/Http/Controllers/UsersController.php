@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -11,6 +15,23 @@ class UsersController extends Controller
     {
         $this->middleware('auth:admin');
     }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:3', 'confirmed'],
+            'role_id' => ['required', 'integer']
+        ]);
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -31,7 +52,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('newUser', [
+            'roles' => Role::all()
+        ]);
     }
 
     /**
@@ -42,7 +65,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        return $request['admin'][0];
+        return User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'role_id' => $request['admin'][0],
+        ]);
     }
 
     /**
@@ -64,7 +93,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('editUser',[
+            'user' => User::findOrFail($id),
+            'roles' => Role::all()
+        ]);
     }
 
     /**
@@ -76,7 +108,9 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('users')->where('id', $id)->update(['role_id' => $request['admin'][0]]);
+        $user = User::findOrFail($id);
+        return redirect('/users')->with('success', 'User '. $user->name .' updated!');
     }
 
     /**

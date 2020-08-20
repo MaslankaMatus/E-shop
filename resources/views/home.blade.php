@@ -2,24 +2,24 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    {{--                    <div class="card-header">{{auth()->user()->name}}</div>--}}
-                    {{--                        {{$name}}--}}
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+{{--        <div class="row justify-content-center">--}}
+{{--            <div class="col-md-8">--}}
+{{--                <div class="card">--}}
+{{--                    --}}{{----}}{{--                    <div class="card-header">{{auth()->user()->name}}</div>--}}
+{{--                    --}}{{----}}{{--                        {{$name}}--}}
+{{--                    <div class="card-body">--}}
+{{--                        @if (session('status'))--}}
+{{--                            <div class="alert alert-success" role="alert">--}}
+{{--                                {{ session('status') }}--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
 
-                        {{ __('You are logged in!') }}
+{{--                        {{ __('You are logged in!') }}--}}
 
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="col-sm-12">
 
             @if(session()->get('success'))
