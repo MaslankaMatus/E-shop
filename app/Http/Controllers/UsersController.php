@@ -66,13 +66,14 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-//        return $request['admin'][0];
-        return User::create([
+        User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'role_id' => $request['admin'][0],
         ]);
+
+        return redirect('/users')->with('success', 'User ' . $request['name'] . ' deleted!');
     }
 
     /**
@@ -122,7 +123,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/')->with('success', 'User deleted!');
     }
 
     public function pdf()

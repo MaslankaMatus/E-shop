@@ -18,8 +18,8 @@
                 <th scope="col">Email</th>
                 <th scope="col">Role</th>
                 <th scope="col">Created</th>
-                <th></th>
-{{--                <th scope="col"></th>--}}
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -37,12 +37,12 @@
                         @endif
                         <td>{{ $user->created_at->diffForHumans() }}</td>
                         <td><a href="{{ route('users.edit', [$user->id]) }}">EDIT</a></td>
-{{--                        <td>--}}
-{{--                            {{ Form::open(array('url' => 'users/' . $user->id, 'class' => 'pull-right')) }}--}}
-{{--                            {{ Form::hidden('_method', 'DELETE') }}--}}
-{{--                            {{ Form::submit('Delete', array('class' => 'btn btn-primary')) }}--}}
-{{--                            {{ Form::close() }}--}}
-{{--                        </td>--}}
+                        <td>
+                            {{ Form::open(array('url' => 'users/' . $user->id, 'class' => 'pull-right')) }}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            {{ Form::submit('Delete', array('class' => 'btn btn-primary')) }}
+                            {{ Form::close() }}
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
